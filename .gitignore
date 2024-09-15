@@ -1,2 +1,3 @@
-!payload/binaries/.gitkeep
-payload/binaries/*
+/output
+!/payload/binaries/.gitkeep
+/payload/binaries/*
