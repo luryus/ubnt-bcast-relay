@@ -12,8 +12,8 @@ basedir=$(dirname $0)
 target='/config/scripts'
 
 # Copy binary into /opt/vyatta/sbin
-echo "Installing udp-bcast-relay to /opt/vyatta/sbin/"
-install -o root -g root -m 0755 ${basedir}/binaries/udp-bcast-relay /opt/vyatta/sbin/udp-bcast-relay
+echo "Installing udp-bcast-relay-rs to /opt/vyatta/sbin/"
+install -o root -g root -m 0755 ${basedir}/binaries/udp-bcast-relay-rs /opt/vyatta/sbin/udp-bcast-relay-rs
 
 # Copy config helper script into /opt/vyatta/sbin
 echo "Installing ubnt-bcast-relay.pl to ${target}/"

@@ -14,8 +14,8 @@ my $version = q{1.0};
 my ( $update, $stop );
 my $FALSE      = 0;
 my $TRUE       = 1;
-my $executable = q{/opt/vyatta/sbin/udp-bcast-relay};
-my $pid_file   = q{/var/run/udp-bcast-relay};
+my $executable = q{/opt/vyatta/sbin/udp-bcast-relay-rs};
+my $pid_file   = q{/var/run/udp-bcast-relay-rs};
 
 ############################### script runs here ###############################
 exit 0 if &main();

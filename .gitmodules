@@ -1,0 +1,3 @@
+[submodule "udp-bcast-relay-rs"]
+	path = udp-bcast-relay-rs
+	url = https://github.com/luryus/udp-bcast-relay-rs
