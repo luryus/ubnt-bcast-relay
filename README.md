@@ -1,5 +1,11 @@
 # [Multicast, Sonos, Phorus & Play-Fi Broadcast 255.255.255.255:<port> Discovery Solution](https://community.ubnt.com/t5/EdgeMAX/Multicast-Sonos-Phorus-amp-Play-Fi-Broadcast-255-255-255-255-lt/td-p/1259616)
 
+**This repo is based on a Rust reimplementation of the udp-broadcast-relay program.** The Rust port is much more straightforward to cross-compile to the MIPS architecture of EdgeRouter devices.
+
+Unlike the [upstream repo](https://github.com/britannic/ubnt-bcast-relay), this does not contain any prebuilt binaries among the code.
+
+Only EdgeRouter X support has been tested and the build scripts currently only work for ER-X.
+
 ## Licenses
 
 * GNU General Public License, version 3
@@ -7,12 +13,12 @@
 
 ## Features
 
-* [UDP Packet Broadcast Relay](http://www.joachim-breitner.de/udp-broadcast-relay/) compiled for EdgeMAX MIPS64
+* [udp-bcast-relay-rs](https://github.com/luryus/ubnt-bcast-relay-rs)
 * Integrated with EdgeOS CLI
 * Can also be configured from the EdgeOS Web GUI
 * Lightweight, very low overhead for home based networks
 
-### This solution is designed to work on EdgeMAX routers. It has been tested up to EdgeOS v1.10.x
+### This solution is designed to work on EdgeMAX routers.
 
 So, like many folk who like to segregate our SOHO home networks with VLANs, subnets, etc., I was frustrated at not being able to use iOS apps, Windows drivers etc. to find and use (in my case) a Play-Fi LAN streaming speaker system on my logical networks.
 
@@ -32,23 +38,30 @@ YMMV and of course, there is always a risk using any non Ubiquiti approved/test 
 
 ## Installation
 
-* upload install_ubnt_bcast_relay.v1.2 to your router
+1. Grab the latest release from [Github releases](https://github.com/luryus/ubnt-bcast-relay/releases) or build the project yourself (instructions below)
+2. Copy the .tar.gz file to your router
+3. Run:
+    ```
+    tar zxvf ./install_ubnt_bcast_relay.v1.2.tgz
+    sudo bash ./install_ubnt_bcast_relay.v1.2
+    # select menu option #1 if installing for the first time
+    # select menu option #2 to completely remove ubnt_bcast_relay
+    ```
 
-        curl -Lo /tmp/install_ubnt_bcast_relay.v1.2.tgz https://github.com/britannic/ubnt-bcast-relay/raw/master/install_ubnt_bcast_relay.v1.2.tgz 
-        cd /tmp
-        sudo tar zxvf ./install_ubnt_bcast_relay.v1.2.tgz
-        sudo bash ./install_ubnt_bcast_relay.v1.2
-        select menu option #1 if installing for the first time
-        select menu option #2 to completely remove ubnt_bcast_relay
-        
-## Installation steps for EdgeRouter X
+### Manual build
 
-* upload ubnt-bcast-relay_ER-X.tgz to your router and run the installer
-        
-        curl -Lo /tmp/ubnt-bcast-relay_ER-X.tgz https://github.com/britannic/ubnt-bcast-relay/raw/master/ubnt-bcast-relay_ER-X.tgz
-        cd /tmp
-        sudo tar zxvf ./ubnt-bcast-relay_ER-X.tgz
-        sudo bash ./ubnt-bcast-relay/install.sh
+1. Install nightly Rust via rustup
+2. Install cross
+3. Build the udp-bcast-relay-rs binary:
+    ```
+    ./build-relay-binary.sh
+    ```
+4. Build the setup script package:
+    ```
+    ./build
+    ```
+5. The built package will be stored under output/
+
 
 ## Removal
 
